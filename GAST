@@ -1,0 +1,58 @@
+#include <stdio.h>
+int otstup(int a) {
+if (a != 0) {
+    if (a == 1)
+        puts("\t");
+    if (a == 2)
+        puts("\t\t");
+    if (a == 3)
+        puts("\t\t\t");
+    return 0;
+}
+}
+int main(int argc, char** argv) {
+char code[30000];
+FILE* file;
+if ((file = fopen(argv[1], 'r')) == NULL)
+    perror('error file open');
+fgets(code, 30000, file);
+fclose(file);
+int s = 0;
+for (int i = 0; code[i] != '\0'; i++) {
+    if (code[i] == '+') {
+        otstup(s);
+        puts("\t <INCREASE>\n");
+    }
+    if (code[i] == '-') {
+        otstup(s);
+        puts("\t <DECREASE>\n");
+    }
+    if (code[i] == '<') {
+        otstup(s);
+        puts("\t <SHIFT_LEFT>\n");
+    }
+    if (code[i] == '>') {
+        otstup(s);
+        puts("\t <SHIFT_RIGHT>\n");
+    }
+    if (code[i] == ',') {
+        otstup(s);
+        puts("\t <INPUT>\n");
+    }
+    if (code[i] == '.') {
+        otstup(s);
+        puts("\t <OUTPUT>\n");
+    }
+    if (code[i] == '[') {
+        otstup(s);
+        puts("\t <LEFT_LOOP>\n");
+        s++;
+    }
+    if (code[i] == ']') {
+        s--;
+        otstup(s);
+        puts("\t <RIGHT_LOOP>\n");
+    }
+}
+return 0;
+}
