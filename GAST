@@ -1,12 +1,13 @@
 #include <stdio.h>
 int otstup(int a) {
+int b = 0;
 if (a != 0) {
-    if (a == 1)
+    while (a != 0) {
         puts("\t");
-    if (a == 2)
-        puts("\t\t");
-    if (a == 3)
-        puts("\t\t\t");
+        a--;
+        b++;
+    }
+    a = b;
     return 0;
 }
 }
